@@ -13,7 +13,9 @@ public class MainApp {
             System.out.println("\n--- Student System ---");
             System.out.println("1. Add");
             System.out.println("2. View");
-            System.out.println("3. Exit");
+            System.out.println("3. Search");
+            System.out.println("4. Delete");
+            System.out.println("5. Exit");
 
             System.out.print("Enter choice: ");
             ch = sc.nextInt();
@@ -46,11 +48,49 @@ public class MainApp {
                     }
                 }
 
-            } else if (ch != 3) {
+            } else if (ch == 3) {
+
+                System.out.print("Enter student id: ");
+                int searchId = sc.nextInt();
+
+                boolean found = false;
+
+                for (Student s : list) {
+                    if (s.id == searchId) {
+                        s.display();
+                        found = true;
+                    }
+                }
+
+                if (!found) {
+                    System.out.println("Student not found");
+                }
+
+            } else if (ch == 4) {
+
+                System.out.print("Enter student id to delete: ");
+                int deleteId = sc.nextInt();
+
+                boolean removed = false;
+
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).id == deleteId) {
+                        list.remove(i);
+                        removed = true;
+                        System.out.println("Deleted");
+                        break;
+                    }
+                }
+
+                if (!removed) {
+                    System.out.println("Student not found");
+                }
+
+            } else if (ch != 5) {
                 System.out.println("Wrong choice");
             }
 
-        } while (ch != 3);
+        } while (ch != 5);
 
         System.out.println("End");
 
